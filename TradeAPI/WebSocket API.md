@@ -197,9 +197,22 @@ QuoteRequest
 {"Symbol":"ETH_BTC","QuoteType":0,"Count":1,"CRID":null,"MsgType":"QuoteRequest"}
 ```
 
-### Response简介
+GetTradesRequest
 
-`所有Response包含账户信息以及基础字段`
+`获取成交信息`
+
+| 参数名 | 类型 | 描述 | 取值例子 |
+| - | - | - | - |
+| Symbol | string | 交易货币对 | "ETH_BTC" |
+| Count | int | 获取数量 | 10 |
+
+```json
+{"Symbol":"ETH_BTC","Count":10,"CRID":null,"MsgType":"GetTradesRequest"}
+```
+
+### SignedResponse简介
+
+`所有SignedResponse包含账户信息以及基础字段`
 
 | 字段名 | 类型 | 描述 | 例子 |
 | - | - | - | - |
@@ -209,7 +222,7 @@ QuoteRequest
 | CRID | string | 用以来区分每个request，建议使用uuid（也叫做guid） | "639ae8e3-3a4b-40b2-acac-1f6160444d80" |
 | MsgType | string | 用以区分这是什么类型的响应 | "PlaceOrderResponse" |
 
-### Response报文格式介绍
+### SignedResponse报文格式介绍
 
 PlaceOrderResponse
 
@@ -269,6 +282,43 @@ GetOrdersResponse
 
 ```json
 {"Orders":[{"Timestamp":1531792846339,"CRID":"639ae8e3-3a4b-40b2-acac-1f6160444d80","OID":"921719a87c8843a4a31bdfa7428891f1","Symbol":"ETH_BTC","Side":"2","OrderType":"2","LastQty":1.0,"CumQty":1.0,"LeaveQty":0.0,"TotalQty":1.0,"Price":2.0,"StopPrice":0.0,"Status":"3","Text":null,"SettlementQty":1.0,"AveragePrice":2.0,"ExecutionDetails":[{"Index":0,"Timestamp":1531792846276,"Price":2.0,"TotalQuantity":1.0,"OpenedQuantity":0.0,"ClosedQuantity":1.0}],"Created":1531792846260,"FeeExchange":0.0,"TradeFeeLogs":[],"Account":"ptest2","MsgType":"Order"}],"OrdRejReason":0,"Date":"20180717","Account":"ptest2","RC":"0","CRID":"e4ea07affa1a4105a0d205e85a5ad68f","MsgType":"GetOrdersResponse"}
+```
+
+### Response 简介
+
+`所有Response包含以下基础字段`
+
+| 字段名 | 类型 | 描述 | 例子 |
+| - | - | - | - |
+| RC | string | 错误原因代码 | "0" |
+| CRID | string | 用以来区分每个request，建议使用uuid（也叫做guid） | "639ae8e3-3a4b-40b2-acac-1f6160444d80" |
+| MsgType | string | 用以区分这是什么类型的响应 | "QuoteResponse" |
+
+### Response报文格式介绍
+
+QuoteResponse
+
+`获取并订阅orderbook信息，当trade有更新后也会推送`
+
+| 字段名 | 类型 | 描述 | 例子 |
+| - | - | - | - |
+| Ticker | object | 报价信息，具体信息见Notification部分 |  |
+| OrderBook | object | 盘口信息，具体信息见Notification部分 |  |
+
+```json
+{"Ticker":{"Symbol":"ETH_BTC","BidPrice":8.682,"AskPrice":8.7333,"Open":0.0,"High":9.9576,"High24H":0.0,"Low":8.2612,"Low24H":0.0,"Last":8.682,"LastQuantity":1.0278,"PrevCls":8.8236,"Volume":81182.3021,"Volume24H":301895.5912,"Timestamp":1527585256876,"ExecutionLimitDown":0.0,"ExecutionLimitUp":1000000000.0,"MsgType":"Ticker"},"OrderBook":{"Timestamp":1527585257422,"Symbol":"ETH_BTC","Version":3,"Type":"F","Content":"L","List":[{"Side":"1","Size":1.5936,"Price":8.682},{"Side":"1","Size":1.4764,"Price":8.6786},{"Side":"1","Size":1.6764,"Price":8.2447},{"Side":"1","Size":4.1767,"Price":8.2442},{"Side":"1","Size":2.6475,"Price":8.2431},{"Side":"1","Size":6.0079,"Price":8.242},{"Side":"2","Size":3.2407,"Price":9.9985},{"Side":"2","Size":4.4698,"Price":9.9992}],"MsgType":"OrderBook"},"RC":"0","CRID":null,"MsgType":"QuoteResponse"}
+```
+
+GetTradesResponse
+
+`获取成交数据响应`
+
+| 字段名 | 类型 | 描述 | 例子 |
+| - | - | - | - |
+| Trades | List(Trade) | 交易信息，具体信息见Notification部分 |  |
+
+```json
+{"Trades":[{"TID":230158,"Timestamp":1527582888637,"Symbol":"ETH_BTC","Side":"2","Size":1.0278,"Price":8.682,"MsgType":"Trade"},{"TID":230157,"Timestamp":1527582887639,"Symbol":"ETH_BTC","Side":"1","Size":1.0586,"Price":8.7333,"MsgType":"Trade"}],"RC":"0","CRID":null,"MsgType":"GetTradesResponse"}
 ```
 
 ### Notification简介
@@ -395,3 +445,42 @@ OrderBookData
 ```json
 {"Timestamp":1531965515958,"Symbol":"ETH_BTC","Version":1,"Type":"I","Content":"L","List":[{"Side":"1","Size":1.0,"Price":1.0}],"MsgType":"OrderBook"}
 ```
+
+Ticker
+
+`报价信息`
+
+| 字段名 | 类型 | 描述 | 例子 |
+| - | - | - | - |
+| Symbol | string | 交易对 | "ETH_BTC" |
+| BidPrice | decimal | 出价 | 8.682 |
+| AskPrice | decimal | 报价 | 8.7333 |
+| Open | decimal | 开盘价 | 0.0 |
+| High | decimal | 最高价 | 9.9576 |
+| High24H | decimal | 24小时最高价 | 0.0 |
+| Low | decimal | 最低价 | 8.2612 |
+| Low24H | decimal | 24小时最低价 | 0.0 |
+| Last | decimal | 上一笔成交价 | 8.682 |
+| LastQuantity | decimal | 上一笔成交数量 | 1.0278 |
+| PrevCls | decimal | 昨日收盘价 | 8.8236 |
+| Volume | decimal | 成交量 | 81182.3021 |
+| Volume24H | decimal | 24小时成交量 | 301895.5912 |
+| Timestamp | long | 推送时间 | 1527585256876 |
+| MsgType | string | 用以区分这是什么类型的推送 | "Ticker" |
+
+```json
+{"Symbol":"ETH_BTC","BidPrice":8.682,"AskPrice":8.7333,"Open":0.0,"High":9.9576,"High24H":0.0,"Low":8.2612,"Low24H":0.0,"Last":8.682,"LastQuantity":1.0278,"PrevCls":8.8236,"Volume":81182.3021,"Volume24H":301895.5912,"Timestamp":1527585256876,"ExecutionLimitDown":0.0,"ExecutionLimitUp":1000000000.0,"MsgType":"Ticker"}
+```
+
+Trade
+
+`成交信息`
+
+| 字段名 | 类型 | 描述 | 例子 |
+| - | - | - | - |
+| TID | int | 版本，用于确认是否有消息丢失 | 1 |
+| Timestamp | long | 成交时间 时间戳，utc，毫秒级 | 1527582888637 |
+| Symbol | string | 交易货币对 | "ETH_BTC" |
+| Side | string | 值1（买），2（卖） | "1" |
+| Size | decimal | 数量 | 1.0278 |
+| Price | decimal | 价格 | 8.682 |
