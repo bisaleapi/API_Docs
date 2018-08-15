@@ -84,39 +84,3 @@ Timestamp|Long|推送时间|"1534314516174"
   ]
 }
 ````  
-
-### 2.新增交易对信息
-
-调用URL:
-
-```
-GET {host}/api/sendQuoteRequest
-```
-
-请求参数：  
-
-字段名|类型|是否必填|描述|例子
----|---|:---:|---|---|
-symbol|String|是|交易对|“ELF_BTC”
-auth|String|是|密钥|”abcdrwasdfa123fafsf“  
-
-示例：
-
-```
-curl -X GET {host}/api/sendQuoteRequest?symbol=ELF_BTC&auth=abcdrwasdfa123fafsf  
-```
-
-返回格式：  
-
-字段名|类型|描述
----|---|---
-code|int|状态码
-data|Object|返回数据，无
-如： 
- 
-````json
-{
-  "code": 200,
-  "data": {}
-}
-````
