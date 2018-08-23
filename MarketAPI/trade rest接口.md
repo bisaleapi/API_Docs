@@ -39,8 +39,8 @@ data|Object|返回数据，是一个由json格式数据组成的集合。
 Timestamp|long|成交时间|1530602654234
 Symbol|String|交易对|"ELF_BTC"
 Side|String|买卖方向，1:买，2:卖|"1"
-Size|bigDecimal|成交数量|7.3
-Price|bigDecimal|成交价格|0.0009
+Size|String|成交数量|7.3
+Price|String|成交价格|0.0009
 
 返回值如：  
 
@@ -52,15 +52,15 @@ Price|bigDecimal|成交价格|0.0009
             "Timestamp": 1530602654234,
             "Symbol": "ETH_BTC",
             "Side": "1",
-            "Size": 7.3,
-            "Price": 0.0009
+            "Size": "7.3",
+            "Price": "0.0009"
         },
         {
             "Timestamp": 1530602654000,
             "Symbol": "ETH_BTC",
             "Side": "1",
-            "Size": 1.1,
-            "Price": 0.0009
+            "Size": "1.1",
+            "Price": "0.0009"
         }
     ]
 }
