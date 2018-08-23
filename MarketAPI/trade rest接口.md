@@ -18,7 +18,7 @@ GET {host}/api/getTradesRequest
 begin |long|是|开始时间|1530602654000
 end|long|是|结束时间|1535959454000
 symbol|String|是|交易对|“ELF_BTC”
-pageSize|int|否|数据条目数|50
+pageSize|int|否|数据条目数(不传采用默认值)|50
 
 示例：
 ```
@@ -30,7 +30,8 @@ curl -X GET {host}/api/getTradesRequest?begin=1530602654000&end=1535959454000&sy
 字段名|类型|描述
 ---|---|---
 code|int|状态码
-data|Object|返回数据，是一个由json格式数据组成的集合。  
+data|Object|返回数据，是一个由json格式数据组成的集合。
+
 返回值相应字段：  
 
 字段名|类型|描述|例子
