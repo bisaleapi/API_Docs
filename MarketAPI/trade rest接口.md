@@ -18,11 +18,11 @@ GET {host}/api/getTradesRequest
 begin |long|是|开始时间|1530602654000
 end|long|是|结束时间|1535959454000
 symbol|String|是|交易对|"ELF_BTC"
-pageSize|int|否|数据条目数(不传采用默认值)|50
+count|int|否|数据条目数(不传采用默认值)|50
 
 示例：
 ```
-curl -X GET {host}/api/getTradesRequest?begin=1530602654000&end=1535959454000&symbol=ETH_BTC&pageSize=10
+curl -X GET {host}/api/getTradesRequest?begin=1530602654000&end=1535959454000&symbol=ETH_BTC&count=10
 ```
 
 返回格式：  
