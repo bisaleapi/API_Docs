@@ -14,7 +14,7 @@ GET {host}/api/quoteRequest
 
 字段名|类型|是否必填|描述|例子
 ---|---|:---:|---|---|
-symbol|String|否|交易对|“ELF_BTC”
+symbol|String|否|交易对|"ELF_BTC"
 
 示例：
 ```
@@ -31,9 +31,9 @@ data|Object|返回数据，是一个由json格式数据组成的集合。
 
 字段名|类型|描述|例子
 ---|---|---|---
-Symbol|String|交易对|“ELF_BTC”
-BidPrice|String|出价|“8.682”
-AskPrice|String|报价|"8.7333“
+Symbol|String|交易对|"ELF_BTC"
+BidPrice|String|出价|"8.682"
+AskPrice|String|报价|"8.7333"
 Open|String|开盘价|"0.0"
 High|String|最高价|"9.9576"
 High24H|String|24小时最高价|"0.0"
@@ -43,7 +43,7 @@ Rate24H|String|24小时变化率|"-15.24"
 Last|String|上一笔成交价|"0.00005127"
 Volume|String|成交量|"81182.3021"
 Volume24H|String|24小时成交量|"301895.5912"
-Timestamp|Long|推送时间|"1534314516174"
+Timestamp|Long|推送时间|1534314516174
 
 返回值如：  
 
