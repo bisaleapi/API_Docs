@@ -18,7 +18,7 @@ GET {host}/api/getTradesRequest
 begin |long|是|开始时间|1530602654000
 end|long|是|结束时间|1535959454000
 symbol|String|是|交易对|"ELF_BTC"
-count|int|否|数据条目数(不传采用默认值)|50
+count|int|否|数据条目数(不传采用默认值,默认值为上限)|50
 
 示例：
 ```
